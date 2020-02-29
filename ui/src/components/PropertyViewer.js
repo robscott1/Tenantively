@@ -52,15 +52,6 @@ function RelevantReferences() {
     }
   ];
 
-  //   const handleCite = item => {
-  //     message.info("Write the DocumentEditor Jay");
-  //   };
-
-  //   const handleCloseReference = item => {
-  //     console.log(item);
-  //     setData(data.filter(entry => entry.webPage.url !== item.webPage.url));
-  //   };
-
   const { Meta } = Card;
 
   return (
@@ -70,36 +61,6 @@ function RelevantReferences() {
         dataSource={data}
         renderItem={item => (
           <List.Item>
-            <List.Item.Meta />
-            {/* <Card
-                            hoverable
-                            actions={[
-                                <Button
-                                    type='default'
-                                    size='small'
-                                    shape='round'
-                                    onClick={() => handleCite(item)}
-                                >
-                                        Cite
-                                        <Icon type="plus-circle" />
-                                </Button>,
-                            ]}
-                            extra={
-                                <Button
-                                    type='default'
-                                    size='small'
-                                    shape='circle'
-                                    onClick={() => handleCloseReference(item)}
-                                >
-                                        <Icon type="close" />
-                                </Button>
-                            }
-                            title={<a href={item.webPage.url}>{item.webPage.url}</a>}
-                            size="small"
-                            style={{ width: 300}}
-                        >
-                            {<Markdown>{item.previewText}</Markdown>}
-                        </Card> */}
             <Card
               style={{ width: 300 }}
               cover={<img alt="example" src={item.img} />}
