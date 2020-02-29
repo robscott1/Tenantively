@@ -3,6 +3,8 @@ import logo from "./logo.svg";
 import "./App.css";
 import PropertyViewer from "./components/PropertyViewer";
 import Search from "./components/search";
+import PrettyColumn from "./components/PrettyColumn";
+import PrimarySearchAppBar from "./components/bar";
 
 function App() {
   return (
@@ -18,11 +20,11 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          <PrimarySearchAppBar />
         </a>
       </header>
       <div className="Properties">
-        <PropertyViewer />
+        <PrettyColumn />
         <Search />
       </div>
     </div>
