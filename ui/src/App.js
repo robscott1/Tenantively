@@ -1,6 +1,7 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import PropertyViewer from "./components/PropertyViewer";
 
 function App() {
   return (
@@ -18,7 +19,11 @@ function App() {
         >
           Learn React
         </a>
+        <PropertyViewer />  
       </header>
+      <div className="Properties">
+        <PropertyViewer />
+      </div>
     </div>
   );
 }
