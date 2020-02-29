@@ -1,0 +1,10 @@
+.App {
+    font-family: Georgia, serif;
+    text-align: left;
+}
+
+.todoContainer {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
