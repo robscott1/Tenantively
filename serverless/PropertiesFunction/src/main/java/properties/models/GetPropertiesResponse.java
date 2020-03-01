@@ -1,4 +1,4 @@
-package helloworld.models;
+package properties.models;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,7 +17,6 @@ public class GetPropertiesResponse {
     private String leaseTerms;
     private String isListed;
 
-
     public String getId() {
         return id;
     }
@@ -34,18 +33,6 @@ public class GetPropertiesResponse {
         this.propertyManagerId = propertyManagerId;
     }
 
-    public String getCurrentLeaseId() {
-        return currentLeaseId;
-    }
-
-    public String getIsListed() {
-        return isListed;
-    }
-
-    public void setIsListed(String isListed) {
-        this.isListed = isListed;
-    }
-
     public String getLeaseContracts() {
         return leaseContracts;
     }
@@ -54,40 +41,12 @@ public class GetPropertiesResponse {
         this.leaseContracts = leaseContracts;
     }
 
-    public String getLeaseTerms() {
-        return leaseTerms;
-    }
-
-    public void setLeaseTerms(String leaseTerms) {
-        this.leaseTerms = leaseTerms;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
+    public String getCurrentLeaseId() {
+        return currentLeaseId;
     }
 
     public void setCurrentLeaseId(String currentLeaseId) {
         this.currentLeaseId = currentLeaseId;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getImages() {
-        return images;
-    }
-
-    public void setImages(String images) {
-        this.images = images;
     }
 
     public String getApplications() {
@@ -98,12 +57,52 @@ public class GetPropertiesResponse {
         this.applications = applications;
     }
 
+    public String getImages() {
+        return images;
+    }
+
+    public void setImages(String images) {
+        this.images = images;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getAddress() {
         return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getLeaseTerms() {
+        return leaseTerms;
+    }
+
+    public void setLeaseTerms(String leaseTerms) {
+        this.leaseTerms = leaseTerms;
+    }
+
+    public String getIsListed() {
+        return isListed;
+    }
+
+    public void setIsListed(String isListed) {
+        this.isListed = isListed;
     }
 
     @Override
