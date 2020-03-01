@@ -5,6 +5,7 @@ import Search from "./components/search";
 import TenantPropertyView from "./components/TenantPropertyView";
 import PrettyColumn from "./components/PrettyColumn";
 import PrimarySearchAppBar from "./components/bar";
+import CurrentLease from "./components/CurrentLease";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <h1> Owned Property List: </h1>
         <li>{"                                                 "}</li>
         <li>{"                                                 "}</li>
+        <CurrentLease />
         <TenantPropertyView />
         <Search />
         <li>{"                                                 "}</li>

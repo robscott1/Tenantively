@@ -8,8 +8,7 @@ import {
 
 import "antd/dist/antd.css";
 
-function RelevantReferences() {
-
+function PropertyViewer() {
   const data = [
     {
       title: "1236 Monte Vista Place, SLO",
@@ -41,33 +40,10 @@ function RelevantReferences() {
   const { Meta } = Card;
 
   return (
-    <div className="RelevantReferences">
-      {/* <Row gutter={[16, 16]}>
-        <Col span={8}>
-          <Card
-            style={{ width: 300 }}
-            cover={<img alt="example" src={item.img} />}
-            actions={[
-              <SettingOutlined key="setting" />,
-              <EditOutlined key="edit" />,
-              <EllipsisOutlined key="ellipsis" />
-            ]}
-          >
-            <Meta
-              avatar={<Avatar src={item.profpic} size={64} />}
-              title={item.title}
-              description={item.description}
-            />
-          </Card>
-        </Col>
-        <Col span={8} />
-        <Col span={8} />
-      </Row>
-      <Row gutter={[16, 16]}>
-        <Col span={8} />
-        <Col span={8} />
-        <Col span={8} />
-      </Row> */}
+    <div
+      className="PropertyViewer
+    "
+    >
       <List
         grid={{ gutter: 16, column: 3 }}
         dataSource={data}
@@ -95,4 +71,4 @@ function RelevantReferences() {
   );
 }
 
-export default RelevantReferences;
+export default PropertyViewer;
