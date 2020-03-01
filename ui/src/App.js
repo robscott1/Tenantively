@@ -1,29 +1,32 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import PropertyViewer from "./components/PropertyViewer";
 import Search from "./components/search";
+import TenantPropertyView from "./components/TenantPropertyView";
+import PrettyColumn from "./components/PrettyColumn";
+import PrimarySearchAppBar from "./components/bar";
+import SinglePropViewLandLord from "./components/SinglePropViewLandLord";
+import CurrentLease from "./components/CurrentLease";
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
       <div className="Properties">
-        <PropertyViewer />
+        <h1> Owned Property List: </h1>
+        <li>{"                                                 "}</li>
+        <li>{"                                                 "}</li>
+        <CurrentLease />
+        <TenantPropertyView />
+        <SinglePropViewLandLord/>
         <Search />
+        <li>{"                                                 "}</li>
+        <li>{"                                                 "}</li>
+        <li>{"                                                 "}</li>
+        <PrimarySearchAppBar />
+        <div className="Properties">
+          <PrettyColumn />
+        </div>
       </div>
     </div>
   );

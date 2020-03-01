@@ -44,14 +44,16 @@ function Search() {
       className="Search
     "
     >
-      <Search placeholder="input search loading deault" loading />
+      <Search placeholder="Enter Town, City, or Zip Code..." enterButton/>
       <br />
       <br />
-      <Search
-        placeholder="input search loading with enterButton"
-        loading
-        enterButton
-      />
+      <br />
+      <br />
+      {/*<Search*/}
+      {/*  placeholder="input search loading with enterButton"*/}
+      {/*  loading*/}
+      {/*  enterButton*/}
+      {/*/>*/}
     </div>
   );
 }
