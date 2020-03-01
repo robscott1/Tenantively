@@ -42,12 +42,15 @@ function fail(message) {
   process.exit(1);
 }
 
-api.connect().then(() => {
-  console.log('Connected...');
-  return api.preparePayment(kimball.address, payment, instructions).then(prepared => {
-    console.log('Payment transaction prepared...');
-    const {signedTransaction} = api.sign(prepared.txJSON, kimball.secret);
-    console.log('Payment transaction signed...');
-    api.submit(signedTransaction).then(quit, fail);
-  });
-}).catch(fail);
+
+function makePayment(tenant, manager){
+    api.connect().then(() => {
+    console.log('Connected...');
+    return api.preparePayment(kimball.address, payment, instructions).then(prepared => {
+        console.log('Payment transaction prepared...');
+        const {signedTransaction} = api.sign(prepared.txJSON, kimball.secret);
+        console.log('Payment transaction signed...');
+        api.submit(signedTransaction).then(quit, fail);
+    });
+    }).catch(fail);
+}
