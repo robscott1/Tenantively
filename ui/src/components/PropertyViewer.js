@@ -1,9 +1,20 @@
 import React, { useState } from "react";
-import { Button, List, Card, message, Avatar } from "antd";
+import {
+  Content,
+  Button,
+  List,
+  Card,
+  message,
+  Avatar,
+  Popover,
+  Menu,
+  Dropdown
+} from "antd";
 import {
   EditOutlined,
   EllipsisOutlined,
-  SettingOutlined
+  SettingOutlined,
+  RightCircleOutlined
 } from "@ant-design/icons";
 
 import "antd/dist/antd.css";
@@ -11,33 +22,41 @@ import "antd/dist/antd.css";
 function PropertyViewer() {
   const data = [
     {
-      title: "1236 Monte Vista Place, SLO",
+      streetNum: "1236 Monte Vista Place",
       img: "https://spockandchristine.com/wp-content/uploads/2019/02/yolo.jpg",
-      description: "Beautiful single family home located in Stockton",
+      cityZip: "San Luis Obispo, CA 95630",
       profpic:
         "https://content-calpoly-edu.s3.amazonaws.com/greeklife/1/images/IMG_2302.jpg"
     },
     {
-      title: "IG",
+      streetNum: "440 Orange Street",
       img: "https://spockandchristine.com/wp-content/uploads/2019/02/yolo.jpg",
-      description: "yessir",
+      cityZip: "San Luis Obispo, CA 95630",
       profpic: "https://www.linkedin.com/in/austin-silveria/detail/photo/"
     },
     {
-      title: "Lol",
+      streetNum: "180 Calendebara Court",
       img: "https://spockandchristine.com/wp-content/uploads/2019/02/yolo.jpg",
-      description: "yessir",
+      cityZip: "San Luis Obispo, CA 95630",
       profpic: "https://www.linkedin.com/in/austin-silveria/detail/photo/"
     },
     {
-      title: "Hi",
+      streetNum: "990 Nielsen Drive",
       img: "https://spockandchristine.com/wp-content/uploads/2019/02/yolo.jpg",
-      description: "yessir",
+      cityZip: "San Luis Obispo, CA 95630",
       profpic: "https://www.linkedin.com/in/austin-silveria/detail/photo/"
     }
   ];
 
   const { Meta } = Card;
+
+  const content = (
+    <div>
+      <p>Due on March 25 </p>
+    </div>
+  );
+
+  var br = <br />;
 
   return (
     <div
@@ -52,17 +71,18 @@ function PropertyViewer() {
             <Card
               style={{ width: 300 }}
               cover={<img alt="example" src={item.img} />}
-              actions={[
-                <SettingOutlined key="setting" />,
-                <EditOutlined key="edit" />,
-                <EllipsisOutlined key="ellipsis" />
-              ]}
             >
               <Meta
-                avatar={<Avatar src={item.profpic} size={64} />}
-                title={item.title}
-                description={item.description}
+                avatar={<Avatar src={item.profpic} size={50} />}
+                title={item.streetNum}
+                description={item.cityZip}
               />
+              {br}
+              <Popover content={content} streetNum="">
+                <Button type="primary"> {<RightCircleOutlined />} Apply</Button>
+                <span> {"   "} </span>
+                <Button type="primary">More details</Button>
+              </Popover>
             </Card>
           </List.Item>
         )}
