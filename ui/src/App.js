@@ -6,6 +6,7 @@ import TenantPropertyView from "./components/TenantPropertyView";
 import PrettyColumn from "./components/PrettyColumn";
 import PrimarySearchAppBar from "./components/bar";
 import CurrentLease from "./components/CurrentLease";
+import NewLease from "./components/newLease";
 import SinglePropViewLandLord from "./components/SinglePropViewLandLord";
 import ViewApplicants from "./components/viewApplicants";
 import { AppContext } from "./AppContext";
