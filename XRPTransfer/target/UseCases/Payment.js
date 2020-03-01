@@ -12,8 +12,8 @@ function makePayment(tenant, manager, amount){
     console.log('connected');
     });
 
-    const source = bundleSource(tenant.address, amount);
-    const destination = bundleSource(manager.address, amount);
+    const source = bundle(tenant.address, amount);
+    const destination = bundle(manager.address, amount);
 
     const payment = createPayment(source, destination);
 
