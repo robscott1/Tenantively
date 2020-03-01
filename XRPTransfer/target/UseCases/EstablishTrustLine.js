@@ -59,9 +59,9 @@ class Trustline{
 }
 
 // main 
-var huncho = {
-    'address': 'rM1MBnWHzQRXNYcTnHdUKANwxRSyBSYVS7',
-    'secret': 'ssKNXjWotkuzv5shQrhrqPSKMhvNh',
+var kimball = {
+    'address': 'rMNUSUDveYbSGDdLQKAzsBpmjsPDpU5TCq',
+    'secret': 'ssRnQTDwKth39eTp44Wa1qDG8Qa6k',
     'balance': '1,000XRP'
 }
 
@@ -71,5 +71,5 @@ var bob = {
     'balance': '1,000XRP'
 }
 
-establishTrustline(bob, huncho);
+establishTrustline(bob, kimball);
 
