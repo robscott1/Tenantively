@@ -6,14 +6,10 @@ import TenantPropertyView from "./components/TenantPropertyView";
 import PrettyColumn from "./components/PrettyColumn";
 import PrimarySearchAppBar from "./components/bar";
 import CurrentLease from "./components/CurrentLease";
-<<<<<<< HEAD
-import SinglePropViewLandLord from "./components/SinglePropViewLandLord";
-=======
 import NewLease from "./components/newLease";
 import SinglePropViewLandLord from "./components/SinglePropViewLandLord";
 import ViewApplicants from "./components/viewApplicants";
 import { AppContext } from "./AppContext";
->>>>>>> 1423f62047405ddca32e36063754ef21118c4e7b
 
 class AppProvider extends Component {
   state = {
