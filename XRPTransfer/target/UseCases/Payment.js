@@ -1,4 +1,4 @@
-function establishTrustline(tenant, manager){
+function makePayment(tenant, manager, amount){
 
     const RippleAPI = require('ripple-lib').RippleAPI;
 
@@ -12,26 +12,20 @@ function establishTrustline(tenant, manager){
     console.log('connected');
     });
 
-    // Owner sets line of trust for tenant
-    const trustline = createTrustline(manager.address)
-    
-    //Uses the tenant address and pre-made trustline to create
-    //a TrustSet. TrustSet is then signed.
+    const source = bundleSource(tenant.address, amount);
+    const destination = bundleSource(manager.address, amount);
 
-    const signedTrustSet = api.prepareTrustline(tenant.address, trustline).then(
-                            prepared => (api.sign(prepared, tenant.secret)));
+    const payment = createPayment(source, destination);
 
-    // this dot notation could possibly totally not work
-    api.submit(signedTrustSet.signedTransaction).then(
-        recordTrustSetHash(signedTrustSet.id));
 
+    //
     api.on('disconnected', (code) => {
     // code - [close code](https://developer.mozilla.org/en-US/docs/Web/API/CloseEvent) sent by the server
     // will be 1000 if this was normal closure
     console.log('disconnected, code:', code);
     });
     api.connect().then(() => {
-    console.log("boof function call")
+    /* insert code here */
     }).then(() => {
     return api.disconnect();
     }).catch(console.error);
