@@ -14,17 +14,22 @@ function establishTrustline(tenant, manager, trustline){
 
     // Owner sets line of trust for tenant
     const trustline = createTrustline(manager.address)
-    api.prepareTrustline(tenant, trustline).then(prepared => recordTrustSet())
+    
+    //Uses the tenant address and pre-made trustline to create
+    //a TrustSet. TrustSet is then signed.
+
+    api.prepareTrustline(tenant.address, trustline).then(
+        prepared => (api.sign(prepared, tenant.secret)));
 
 
-    //
+    //  
     api.on('disconnected', (code) => {
     // code - [close code](https://developer.mozilla.org/en-US/docs/Web/API/CloseEvent) sent by the server
     // will be 1000 if this was normal closure
     console.log('disconnected, code:', code);
     });
     api.connect().then(() => {
-    /* insert code here */
+    console.log("boof function call")
     }).then(() => {
     return api.disconnect();
     }).catch(console.error);
