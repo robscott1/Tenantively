@@ -17,45 +17,59 @@ function bundle(address, amount){
     }
 }
 
-function createPayment(source, destination){
-    return{
-        "source": source,
-        "destination": destination,
+class Payment{
+    constructor(source, destination){
+        this.source = source;
+        this.source = destination;
     }
 }
 
 var destination = bundle(rob.address, '500');
 var source = bundle(kimball.address, '500');
 
-var payment = createPayment(source, destination);
+var payment = new Payment(source, destination);
 
 
 const RippleAPI = require('ripple-lib').RippleAPI;
-
+/*
 const api = new RippleAPI({
 server: 'wss://s1.ripple.com' // Public rippled server hosted by Ripple, Inc.
 });
-api.on('error', (errorCode, errorMessage) => {
+api.connect('error', (errorCode, errorMessage) => {
 console.log(errorCode + ': ' + errorMessage);
 });
 api.on('connected', () => {
 console.log('connected');
 });
+*/
+console.log('Payment: ' + payment);
 
-var preparedPayment = api.preparePayment(source.address, payment).then(
-                                        prepared => {console.log(prepared)});
+var transactionSeed = {
+    "source": {
+        "address" : kimball.address,
+        "maxAmount": {
+            "value" : "1.00",
+            "currency": "USD",
+        }
+    
+    },
+    "destination": {
+        "address": rob.address,
+        "amount": {
+            "value": "1.00",
+            "currency": "USD",
+        }
+    }
+}
 
-var signedPayment = api.sign(preparedPayment, source.secret);
 
-api.submit(signedPayment).then(value => {console.log('Payment completed. ID: ' + value)});
-
-api.on('disconnected', (code) => {
-// code - [close code](https://developer.mozilla.org/en-US/docs/Web/API/CloseEvent) sent by the server
-// will be 1000 if this was normal closure
-console.log('disconnected, code:', code);
-})
+const api = new RippleAPI({server: 'wss://s.altnet.rippletest.net:51233'});
 api.connect().then(() => {
-console.log('boof function call')
-}).then(() => {
-return api.disconnect();
-}).catch(console.error);
+    console.log('Connected...');
+    return api.preparePayment(kimball.address, transactionSeed).then(prepared => {
+      console.log('Payment transaction prepared...');
+      const {signedTransaction} = api.sign(prepared.txJSON, kimball.secret);
+      console.log('Payment transaction signed...');
+      api.submit(signedTransaction).then(quit, fail);
+    });
+  }).catch();
