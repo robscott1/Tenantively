@@ -9,5 +9,5 @@ function createPayment(source, destination){
     return{
         "source": source,
         "destination": destination,
-    } //no work
+    }
 }

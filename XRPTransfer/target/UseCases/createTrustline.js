@@ -1,7 +1,7 @@
-function createTrustline(managerAddress){
-    return {
-        "currency": "USD",
-        "counterparty": managerAddress,
-        "limit": "10000",
+class Trustline{
+    constructor(managerAddress){
+        this.currency = 'USD';
+        this.counterparty = managerAddress;
+        this.limit = '1000XRP';
     }
 }
