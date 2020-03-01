@@ -1,35 +1,21 @@
 package properties;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import properties.models.Property;
-import properties.models.PropertyRequest;
 import org.junit.Test;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class PropertiesHandlerTest {
   @Test
-  public void successfulResponse() throws JsonProcessingException {
+  public void successfulResponse() throws IOException {
     PropertiesHandler propertiesHandler = new PropertiesHandler();
-    ObjectMapper mapper = new ObjectMapper();
-    PropertyRequest propertyRequest = new PropertyRequest();
-    Property property = new Property();
-    property.setId("yaya");
-    propertyRequest.setRequestType("GET");
-    propertyRequest.setProperty(property);
-    String serialRequest = mapper.writeValueAsString(propertyRequest);
-    System.out.println(serialRequest);
-    GatewayResponse result = (GatewayResponse) propertiesHandler.handleRequest(
-            mapper.readValue(serialRequest, PropertyRequest.class),
-            null);
-    assertEquals(result.getStatusCode(), 200);
-    assertEquals(result.getHeaders().get("Content-Type"), "application/json");
-    String content = result.getBody();
-    System.out.println(content);
-    assertNotNull(content);
-//    assertTrue(content.contains("\"n/a\""));
+    InputStream sampleInput = new FileInputStream("/home/austin/share/RenterPlus/serverless/PropertiesFunction/src/test/java/properties/samplePropertiesInput.txt");
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    propertiesHandler.handleRequest(sampleInput, outputStream, null);
+    String output = outputStream.toString();
+    System.out.println(outputStream);
   }
 }

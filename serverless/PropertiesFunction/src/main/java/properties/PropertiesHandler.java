@@ -3,63 +3,78 @@ package properties;
 import com.amazonaws.services.dynamodbv2.document.*;
 import com.amazonaws.services.dynamodbv2.document.spec.QuerySpec;
 import com.amazonaws.services.lambda.runtime.Context;
-import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import properties.models.Property;
 import properties.models.PropertyRequest;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.*;
 
 /**
  * Handler for requests to Lambda function.
  */
-public class PropertiesHandler implements RequestHandler<PropertyRequest, GatewayResponse> {
-    public static String ERROR_RESPONSE = "{\"message\": failed to handle GetPropertyRequest}";
+public class PropertiesHandler implements RequestStreamHandler {
+    public static String ERROR_MESSAGE = "{\"message\": failed to handle GetPropertyRequest}";
+    public ObjectMapper mapper = new ObjectMapper().enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
 
-    public GatewayResponse handleRequest(final PropertyRequest propertyRequest,
-                                         final Context context) {
+    public void handleRequest(final InputStream inputStream,
+                                final OutputStream outputStream,
+                              final Context context)
+            throws IOException {
         Map<String, String> headers = new HashMap<>();
         headers.put("Content-Type", "application/json");
-        headers.put("X-Custom-Header", "application/json");
+        headers.put("Access-Control-Allow-Origin", "*");
+        headers.put("Access-Control-Allow-Methods", "OPTIONS,POST,GET");
+        PropertyRequest propertyRequest;
+        JsonNode jsonNode = mapper.readTree(inputStream);
+        JsonNode newNode = mapper.readTree(jsonNode.get("body").asText());
+        propertyRequest = mapper.treeToValue(newNode, PropertyRequest.class);
 
         if ("UPDATE".equals(propertyRequest.getRequestType())) {
-            return handleUpdatePropertyRequest(propertyRequest.getProperty(),
+            handleUpdatePropertyRequest(propertyRequest.getProperty(),
+                    outputStream,
                     context,
                     headers);
-        }
-
-        try {
-            return handleGetPropertyRequest(propertyRequest.getProperty(),
-                    context,
-                    headers);
-        } catch (Exception e) {
-            return new GatewayResponse(ERROR_RESPONSE, headers, 500);
+        } else {
+            try {
+                handleGetPropertyRequest(propertyRequest.getProperty(),
+                        outputStream,
+                        context,
+                        headers);
+            } catch (Exception e) {
+                GatewayResponse response = new GatewayResponse(e.toString(), headers, 500, false);
+                mapper.writeValue(outputStream, response);
+            }
         }
     }
 
-    public GatewayResponse handleGetPropertyRequest(final Property getPropertyRequest,
-                                                    final Context context,
-                                                    final Map<String, String> headers)
-        throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
+    public void handleGetPropertyRequest(final Property getPropertyRequest,
+                                         final OutputStream outputStream,
+                                         final Context context,
+                                         final Map<String, String> headers)
+            throws IOException {
         AmazonDynamoDB client = AmazonDynamoDBClientBuilder.defaultClient();
         DynamoDB dynamoDB = new DynamoDB(client);
         Table table = dynamoDB.getTable("tenantivelyTable");
 
         QuerySpec querySpec = new QuerySpec();
+        querySpec = querySpec.withHashKey("PK", getPropertyRequest.getPropertyManagerId());
         if (getPropertyRequest.getId() != null) {
-            KeyAttribute keyAttribute = new KeyAttribute("PK", getPropertyRequest.getId());
-            querySpec = querySpec.withHashKey(keyAttribute);
-        } else if (getPropertyRequest.getPropertyManagerId() != null) {
             RangeKeyCondition rangeKeyCondition = new RangeKeyCondition("SK")
-                    .eq(getPropertyRequest.getPropertyManagerId());
+                    .eq("property|" + getPropertyRequest.getId());
             querySpec = querySpec.withRangeKeyCondition(rangeKeyCondition);
         } else {
-            return new GatewayResponse("{}", headers, 500);
+            RangeKeyCondition rangeKeyCondition = new RangeKeyCondition("SK")
+                    .beginsWith("property|");
+            querySpec = querySpec.withRangeKeyCondition(rangeKeyCondition);
         }
 
         List<Property> properties = new ArrayList<>();
@@ -84,13 +99,15 @@ public class PropertiesHandler implements RequestHandler<PropertyRequest, Gatewa
             property.setIsListed((Boolean) infoMap.get("isListed"));
             properties.add(property);
         }
-
-        return new GatewayResponse(mapper.writeValueAsString(properties), headers, 200);
+        GatewayResponse response = new GatewayResponse(mapper.writeValueAsString(properties), headers, 200, false);
+        mapper.writeValue(outputStream, response);
     }
 
-    public GatewayResponse handleUpdatePropertyRequest(final Property updatePropertyRequest,
-                                                       final Context context,
-                                                       final Map<String, String> headers) {
+    public void handleUpdatePropertyRequest(final Property updatePropertyRequest,
+                                            final OutputStream outputStream,
+                                            final Context context,
+                                            final Map<String, String> headers)
+            throws IOException {
         AmazonDynamoDB client = AmazonDynamoDBClientBuilder.defaultClient();
         DynamoDB dynamoDB = new DynamoDB(client);
         Table table = dynamoDB.getTable("tenantivelyTable");
@@ -109,19 +126,20 @@ public class PropertiesHandler implements RequestHandler<PropertyRequest, Gatewa
         try {
             System.out.println("Updating property: " + updatePropertyRequest.getAddress());
             PutItemOutcome outcome = table
-                    .putItem(new Item().withPrimaryKey("PK", updatePropertyRequest.getId(),
-                            "SK", updatePropertyRequest.getPropertyManagerId()).withMap("info", infoMap));
+                    .putItem(new Item().withPrimaryKey("PK", updatePropertyRequest.getPropertyManagerId(),
+                            "SK", "property|" + updatePropertyRequest.getId()).withMap("info", infoMap));
         } catch (Exception e) {
             System.out.println("Failed to update property: " + updatePropertyRequest.getAddress());
             throw (e);
         }
 
+        GatewayResponse response;
         String serialized = updatePropertyRequest.toString();
         if ("error".equals(serialized)) {
-            return new GatewayResponse("{}", headers, 500);
+            response = new GatewayResponse(ERROR_MESSAGE, headers, 500, false);
+        } else {
+            response = new GatewayResponse(mapper.writeValueAsString(updatePropertyRequest), headers, 200, false);
         }
-
-        return new GatewayResponse(updatePropertyRequest.toString(),
-                headers, 200);
+        mapper.writeValue(outputStream, response);
     }
 }
