@@ -130,8 +130,8 @@ export default function PrimarySearchAppBar() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
+        <IconButton aria-label="show 2 new mails" color="inherit">
+          <Badge badgeContent={2} color="secondary">
             <MailIcon />
           </Badge>
         </IconButton>
@@ -171,8 +171,8 @@ export default function PrimarySearchAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Tenantively
+          <Typography className={classes.title} variant="h3" noWrap>
+            Tenantively.
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
