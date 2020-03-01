@@ -1,0 +1,56 @@
+{
+    "resource": "/properties",
+    "path": "/properties",
+    "httpMethod": "POST",
+    "headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+    },
+    "multiValueHeaders": {
+        "Accept": [
+            "application/json"
+        ],
+        "Content-Type": [
+            "application/json"
+        ]
+    },
+    "queryStringParameters": null,
+    "multiValueQueryStringParameters": null,
+    "pathParameters": null,
+    "stageVariables": null,
+    "requestContext": {
+        "resourceId": "mln1lh",
+        "resourcePath": "/properties",
+        "httpMethod": "POST",
+        "extendedRequestId": "Is6_MFRZvHcFcgw=",
+        "requestTime": "01/Mar/2020:08:27:38 +0000",
+        "path": "/properties",
+        "accountId": "897969569577",
+        "protocol": "HTTP/1.1",
+        "stage": "test-invoke-stage",
+        "domainPrefix": "testPrefix",
+        "requestTimeEpoch": 1583051258777,
+        "requestId": "ddc464c2-2821-4347-8e7b-b05144fb5745",
+        "identity": {
+            "cognitoIdentityPoolId": null,
+            "cognitoIdentityId": null,
+            "apiKey": "test-invoke-api-key",
+            "principalOrgId": null,
+            "cognitoAuthenticationType": null,
+            "userArn": "arn:aws:iam::897969569577:root",
+            "apiKeyId": "test-invoke-api-key-id",
+            "userAgent": "aws-internal/3 aws-sdk-java/1.11.719 Linux/4.9.184-0.1.ac.235.83.329.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.242-b08 java/1.8.0_242 vendor/Oracle_Corporation",
+            "accountId": "897969569577",
+            "caller": "897969569577",
+            "sourceIp": "test-invoke-source-ip",
+            "accessKey": "ASIA5CEZIH4URAXEZTXD",
+            "cognitoAuthenticationProvider": null,
+            "user": "897969569577"
+        },
+        "domainName": "testPrefix.testDomainName",
+        "apiId": "o97j8ka4dd"
+    },
+    "body": "{\"requestType\":\"UPDATE\",\"propertyManager\":{\"id\":\"123\",\"scoreId\":\"43\",\"xrpAddress\":\"432543\",\"secret\":\"fajkdsvi3242okdsh\",\"balance\":\"5000\",\"properties\":[\"4254231\",\"w52234f\",\"dja423432\"],\"incidents\":[\"s3:554\",\"s3:r234\"],\"metadata\":[\"54233f\",\"fj32k43i2\",\"jfdsvh324\"]}}",
+
+    "isBase64Encoded": false
+}

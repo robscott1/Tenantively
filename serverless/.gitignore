@@ -1,3 +1,5 @@
 .aws-sam
 *.iml
 PropertiesFunction/target
+TenantsFunction/target
+PropertyManagersFunction/target
