@@ -6,6 +6,7 @@ import Search from "./components/search";
 import PrettyColumn from "./components/PrettyColumn";
 import PrimarySearchAppBar from "./components/bar";
 
+
 function App() {
   return (
     <div className="App">
