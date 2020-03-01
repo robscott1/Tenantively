@@ -1,0 +1,15 @@
+{
+    "body": {
+        "requestType": "UPDATE",
+        "propertyManager": {
+            "id": "123",
+            "scoreId": "43",
+            "xrpAddress": "432543",
+            "secret": "fajkdsvi3242okdsh",
+            "balance": "5000",
+            "properties": ["4254231", "w52234f", "dja423432"],
+            "incidents": ["s3:554", "s3:r234"],
+            "metadata": ["54233f", "fj32k43i2", "jfdsvh324"]
+        }
+    }
+}

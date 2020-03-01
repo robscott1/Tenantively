@@ -1,0 +1,14 @@
+{
+    "body": {
+        "requestType": "UPDATE",
+        "tenant": {
+            "id": "123",
+            "scoreId": "69",
+            "currentLeaseId": "432543",
+            "leaseContracts": ["3454534", "54352", "532543"],
+            "applications": ["4254231", "w52234f", "dja423432"],
+            "incidents": ["s3:554", "s3:r234"],
+            "metadata": ["54233f", "fj32k43i2", "jfdsvh324"]
+        }
+    }
+}

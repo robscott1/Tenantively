@@ -1,0 +1,18 @@
+{
+    "body": {
+        "requestType": "UPDATE",
+        "property": {
+            "id": "123",
+            "propertyManagerId": "321",
+            "address": "1236 Monte Vista Place, San Luis Obispo, 93405",
+            "currentLeaseId": "54321",
+            "description": "yessir",
+            "size": "38 bed, 24 bath",
+            "isListed": true,
+            "leaseContracts": ["3454534", "54352", "532543"],
+            "applications": ["4254231", "w52234f", "dja423432"],
+            "images": ["s3:554", "s3:r234"],
+            "leaseTerms": ["54233f", "fj32k43i2", "jfdsvh324"]
+        }
+    }
+}
