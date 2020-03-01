@@ -1,0 +1,3 @@
+function recordTrustSetHash(id){
+    
+}

@@ -4,6 +4,7 @@ import TodoList from "./components/TodoList";
 import VisibilityFilters from "./components/VisibilityFilters";
 import PropertyViewer from "./components/PropertyViewer";
 import "./styles.css";
+import RelevantReferences from "./components/RelevantReferences";
 
 export default function TodoApp() {
   return (
@@ -13,6 +14,7 @@ export default function TodoApp() {
       <AddTodo />
       <TodoList />
       <VisibilityFilters />
+      <RelevantReferences/>
     </div>
   );
 }
