@@ -1,4 +1,4 @@
-function establishTrustline(tenant, trustline){
+function establishTrustline(tenant, manager, trustline){
 
     const RippleAPI = require('ripple-lib').RippleAPI;
 
@@ -13,7 +13,8 @@ function establishTrustline(tenant, trustline){
     });
 
     // Owner sets line of trust for tenant
-    api.prepareTrustline(tenant, trustline).then(prepared => recordTransaction())
+    const trustline = createTrustline(manager.address)
+    api.prepareTrustline(tenant, trustline).then(prepared => recordTrustSet())
 
 
     //
