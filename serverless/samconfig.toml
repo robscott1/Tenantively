@@ -2,9 +2,9 @@ version = 0.1
 [default]
 [default.deploy]
 [default.deploy.parameters]
-stack_name = "renterplus"
+stack_name = "tenantively"
 s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1okwb5yxz0oil"
-s3_prefix = "renterplus"
+s3_prefix = "tenantively"
 region = "us-west-2"
 confirm_changeset = true
 capabilities = "CAPABILITY_IAM"
