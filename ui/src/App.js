@@ -5,6 +5,7 @@ import Search from "./components/search";
 import TenantPropertyView from "./components/TenantPropertyView";
 import PrettyColumn from "./components/PrettyColumn";
 import PrimarySearchAppBar from "./components/bar";
+import SinglePropViewLandLord from "./components/SinglePropViewLandLord";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <li>{"                                                 "}</li>
         <li>{"                                                 "}</li>
         <TenantPropertyView />
+        <SinglePropViewLandLord/>
         <Search />
         <li>{"                                                 "}</li>
         <li>{"                                                 "}</li>
