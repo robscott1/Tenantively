@@ -65,41 +65,37 @@ function RelevantReferences() {
 
   return (
     <div className="RelevantReferences">
+      {/* <Row gutter={[16, 16]}>
+        <Col span={8}>
+          <Card
+            style={{ width: 300 }}
+            cover={<img alt="example" src={item.img} />}
+            actions={[
+              <SettingOutlined key="setting" />,
+              <EditOutlined key="edit" />,
+              <EllipsisOutlined key="ellipsis" />
+            ]}
+          >
+            <Meta
+              avatar={<Avatar src={item.profpic} size={64} />}
+              title={item.title}
+              description={item.description}
+            />
+          </Card>
+        </Col>
+        <Col span={8} />
+        <Col span={8} />
+      </Row>
+      <Row gutter={[16, 16]}>
+        <Col span={8} />
+        <Col span={8} />
+        <Col span={8} />
+      </Row> */}
       <List
-        grid={{ gutter: 16, column: 4 }}
+        grid={{ gutter: 16, column: 3 }}
         dataSource={data}
         renderItem={item => (
           <List.Item>
-            <List.Item.Meta />
-            {/* <Card
-                            hoverable
-                            actions={[
-                                <Button
-                                    type='default'
-                                    size='small'
-                                    shape='round'
-                                    onClick={() => handleCite(item)}
-                                >
-                                        Cite
-                                        <Icon type="plus-circle" />
-                                </Button>,
-                            ]}
-                            extra={
-                                <Button
-                                    type='default'
-                                    size='small'
-                                    shape='circle'
-                                    onClick={() => handleCloseReference(item)}
-                                >
-                                        <Icon type="close" />
-                                </Button>
-                            }
-                            title={<a href={item.webPage.url}>{item.webPage.url}</a>}
-                            size="small"
-                            style={{ width: 300}}
-                        >
-                            {<Markdown>{item.previewText}</Markdown>}
-                        </Card> */}
             <Card
               style={{ width: 300 }}
               cover={<img alt="example" src={item.img} />}
