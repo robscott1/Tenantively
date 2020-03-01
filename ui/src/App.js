@@ -5,9 +5,9 @@ import Search from "./components/search";
 import TenantPropertyView from "./components/TenantPropertyView";
 import PrettyColumn from "./components/PrettyColumn";
 import PrimarySearchAppBar from "./components/bar";
-import SinglePropViewLandLord from "./components/SinglePropViewLandLord";
 import CurrentLease from "./components/CurrentLease";
 import NewLease from "./components/newLease";
+import SinglePropViewLandLord from "./components/SinglePropViewLandLord";
 
 
 function App() {
