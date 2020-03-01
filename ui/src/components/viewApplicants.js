@@ -1,5 +1,10 @@
-import React from "react";
-import { Drawer, List, Avatar, Divider, Col, Row } from "antd";
+import React, { useContext } from "react";
+import { Drawer, List, Avatar, Divider, Col, Row, Statistic, Card } from "antd";
+import {
+  ArrowUpOutlined,
+  ArrowDownOutlined,
+  ScissorOutlined
+} from "@ant-design/icons";
 
 const pStyle = {
   fontSize: 16,
@@ -113,7 +118,7 @@ class viewApplicants extends React.Component {
           </p>
           <Row>
             <Col span={12}>
-              <DescriptionItem title="Full Name" content="Lily" />
+              <DescriptionItem title="Applicant Names" content="Lily" />
             </Col>
             <Col span={12}>
               <DescriptionItem
@@ -141,17 +146,43 @@ class viewApplicants extends React.Component {
           <Row>
             <Col span={24}>
               <DescriptionItem
-                title="Message"
+                title="Blurb"
                 content="Make things as simple as possible but no simpler."
               />
             </Col>
           </Row>
           <Divider />
           <p className="site-description-item-profile-p" style={pStyle}>
-            Company
+            Scores
           </p>
           <Row>
             <Col span={12}>
+              <Row gutter={16}>
+                <Col span={12}>
+                  <Card>
+                    <Statistic
+                      title="RentScore"
+                      value={9.9}
+                      precision={2}
+                      valueStyle={{ color: "#3f8600" }}
+                      prefix={<ArrowUpOutlined />}
+                      suffix="%"
+                    />
+                  </Card>
+                </Col>
+                <Col span={12}>
+                  <Card>
+                    <Statistic
+                      title="ExpenseScore"
+                      value={5.3}
+                      precision={2}
+                      valueStyle={{ color: "#cf1322" }}
+                      prefix={<ScissorOutlined />}
+                    />
+                  </Card>
+                </Col>
+              </Row>
+
               <DescriptionItem title="Position" content="Programmer" />
             </Col>
             <Col span={12}>

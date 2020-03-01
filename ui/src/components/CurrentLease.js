@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import {
   Card,
   Avatar,
@@ -17,6 +17,25 @@ import {
   DollarCircleOutlined
 } from "@ant-design/icons";
 import "antd/dist/antd.css";
+
+const TenantContext = React.createContext();
+
+class TenantLeaseProvider extends Component {
+  state = {
+    TenantPropertyList:
+      // use fetch to get single tenant ID's lease
+      {
+        id: "123",
+        address: "1236 Monte Vista Place, San Luis Obispo, 93405",
+        description: "yessir",
+        isListed: true,
+        images: ["s3:554", "s3:r234"]
+      }
+  };
+  render() {
+    return <TenantContext.Provider value={this.state}></TenantContext.Provider>;
+  }
+}
 
 function CurrentLease() {
   function handleMenuClick(e) {
