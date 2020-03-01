@@ -18,11 +18,13 @@ function establishTrustline(tenant, manager, trustline){
     //Uses the tenant address and pre-made trustline to create
     //a TrustSet. TrustSet is then signed.
 
-    api.prepareTrustline(tenant.address, trustline).then(
-        prepared => (api.sign(prepared, tenant.secret)));
+    const signedTrustSet = api.prepareTrustline(tenant.address, trustline).then(
+                            prepared => (api.sign(prepared, tenant.secret)));
 
+    // this dot notation could possibly totally not work
+    api.submit(signedTrustSet.signedTransaction).then(
+        recordTrustSetHash(signedTrustSet.id));
 
-    //  
     api.on('disconnected', (code) => {
     // code - [close code](https://developer.mozilla.org/en-US/docs/Web/API/CloseEvent) sent by the server
     // will be 1000 if this was normal closure
