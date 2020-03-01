@@ -9,20 +9,6 @@ import {
 import "antd/dist/antd.css";
 
 function RelevantReferences() {
-  //   const [data, setData] = useState([
-  //     {
-  //       webPage: {
-  //         url: "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-  //       },
-  //       previewText:
-  //         "Ethereum is a **decentralized Web 3.0 platform** for the creation and peer-to-peer publication of smart contracts created in a Turing-complete programming language."
-  //     },
-  //     {
-  //       webPage: { url: "https://openai.com/blog/musenet/" },
-  //       previewText:
-  //         "MuseNet uses the same general-purpose unsupervised technology as **GPT-2**, a large-scale **transformer model** trained to predict the next token in a **sequence**, whether audio or text."
-  //     }
-  //   ]);
 
   const data = [
     {
@@ -51,15 +37,6 @@ function RelevantReferences() {
       profpic: "https://www.linkedin.com/in/austin-silveria/detail/photo/"
     }
   ];
-
-  //   const handleCite = item => {
-  //     message.info("Write the DocumentEditor Jay");
-  //   };
-
-  //   const handleCloseReference = item => {
-  //     console.log(item);
-  //     setData(data.filter(entry => entry.webPage.url !== item.webPage.url));
-  //   };
 
   const { Meta } = Card;
 
